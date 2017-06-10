@@ -35,7 +35,7 @@ matrix:
           packages:
           - g++-arm-linux-gnueabihf
     - compiler: ": dashd"
-      env: HOST=x86_64-unknown-linux-gnu DEP_OPTS="NO_QT=1 NO_UPNP=1 DEBUG=1" RUN_TESTS=true GOAL="install" BITCOIN_CONFIG="--enable-glibc-back-compat CPPFLAGS=-DDEBUG_LOCKORDER"
+      env: HOST=x86_64-unknown-linux-gnu DEP_OPTS="NO_QT=1 NO_UPNP=1 DEBUG=1" RUN_TESTS=false GOAL="install" BITCOIN_CONFIG="--enable-glibc-back-compat CPPFLAGS=-DDEBUG_LOCKORDER"
       addons:
         apt:
           packages:
@@ -58,7 +58,7 @@ matrix:
           - libcap-dev
           - libbz2-dev
     - compiler: ": Win64"
-      env: HOST=x86_64-w64-mingw32 RUN_TESTS=true GOAL="deploy" BITCOIN_CONFIG="--enable-gui" MAKEJOBS="-j2" WINE=true
+      env: HOST=x86_64-w64-mingw32 RUN_TESTS=false GOAL="deploy" BITCOIN_CONFIG="--enable-gui" MAKEJOBS="-j2" WINE=true
       addons:
         apt:
           sources:
@@ -72,7 +72,7 @@ matrix:
           - wine1.7
           - bc
     - compiler: ": Win32"
-      env: HOST=i686-w64-mingw32 RUN_TESTS=true GOAL="deploy" BITCOIN_CONFIG="--enable-gui" MAKEJOBS="-j2" WINE=true
+      env: HOST=i686-w64-mingw32 RUN_TESTS=false GOAL="deploy" BITCOIN_CONFIG="--enable-gui" MAKEJOBS="-j2" WINE=true
       addons:
         apt:
           sources:
@@ -107,8 +107,5 @@ script:
     - ./configure --cache-file=../config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG || ( cat config.log && false)
     - make $MAKEJOBS $GOAL || ( echo "Build failure. Verbose build follows." && make $GOAL V=1 ; false )
     - export LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/depends/$HOST/lib
-    - if [ "$RUN_TESTS" = "true" -a "$WINE" != "true" ]; then make check; fi
-    - if [ "$RUN_TESTS" = "true" -a "$WINE" = "true" ]; then wine  src/test/test_dash.exe && wine src/qt/test/test_dash-qt.exe ; fi
-    - if [ "$RUN_TESTS" = "true" ]; then qa/pull-tester/rpc-tests.sh; fi
 after_script:
     - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then (echo "Upload goes here. Something like: scp -r $BASE_OUTDIR server" || echo "upload failed"); fi
