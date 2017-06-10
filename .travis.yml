@@ -115,10 +115,8 @@ script:
     - ls -la $HOME/bin
     - ls -la $HOME/bin/*
 after_script:
-- echo $TRAVIS_COMMIT_RANGE
-- echo $TRAVIS_COMMIT_LOG
-notifications:
-  irc: chat.freenode.net#multicoin-co
+    - echo $TRAVIS_COMMIT_RANGE
+    - echo $TRAVIS_COMMIT_LOG
 before_deploy: cd $HOME && tar -zcvf Fortcoin-$HOST.tar.gz $HOME/bin && ls -la $HOME
 deploy:
   skip_cleanup: true
@@ -126,4 +124,4 @@ deploy:
   api_key:
     secure: Equekby5N1j+U0VcuoL8QTX3S95NOFP/J4bgWIKVZrz6QqpeCb84B+7QoGlL+nUtA6cY01U+p4x2MlFRBQNhpzhWld/hW35cKek/sN28pf0a6IJqS3W4CNo7yVqQERtFIZJdEmEEMMVYWoVz76YZaVTE8/Ies0m9NhrZN5xD6O51ia7ZdeCT57BZPfmY2pXuKDrpbJkHA61QxDpBSd/98oVxCqOUX3y0XtDdnL8pt8URyJXmVTasKh1hQacEL1hBkR5+RLq4vgNMfRX6iynDPbebv7yNJywOJYQ4k1nnk5VXYKPw/ioIH2qVdOUlIX4+66IzHYJFXSazz4/k2fIk7TlG4NhYErfKklakUIGPtGfwNWA1viIo7tr1FiO99+7DicHAK5ioNBWJVeiYEu23DqQ+3m3Fk8Wrm8LmYdNla+OA7lEP17taQmcGw9H0w/W05AtaOtBbu00FzG1Mao4SguK1qYQMBcymkwXm82GeZjWT8nDc8bQa+xGMEnzyvkowMnP4WKR7Y+GnGe/bcCHMDGAYomBIqI6k5r+hddbodMYDjOY8GRHv7yAkGSoeKy7XM4Rs0TeHWcw1mgqZwc+1MU+vIhhDr59ntdxWmk633au7biokUIxazdwAjVU3Z+kiSoU8uUFTUXHfmy3Ezd2AnJ3zqo1QpNzemhb04c6+Sis=
   file:
-- $HOME/Fortcoin-$HOST.tar.gz
+    - $HOME/Fortcoin-$HOST.tar.gz
