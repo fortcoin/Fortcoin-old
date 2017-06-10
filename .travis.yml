@@ -40,8 +40,8 @@ script:
     - depends/$HOST/native/bin/ccache --max-size=$CCACHE_SIZE
     - test -n "$USE_SHELL" && eval '"$USE_SHELL" -c "./autogen.sh"' || ./autogen.sh
     - ./configure --cache-file=config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG || ( cat config.log && false)
-    - make distdir PACKAGE=bitcoin VERSION=$HOST
-    - cd bitcoin-$HOST
+    - make distdir PACKAGE=dash VERSION=$HOST
+    - cd dash-$HOST
     - ./configure --cache-file=../config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG || ( cat config.log && false)
     - make $MAKEJOBS $GOAL || ( echo "Build failure. Verbose build follows." && make $GOAL V=1 ; false )
     - mkdir $HOME/bin
@@ -49,8 +49,8 @@ script:
     - ls -la 
     - if [ -d $OUTDIR ]; then ls -la $OUTDIR && cp $OUTDIR/* $HOME/bin/ -rf; fi
     - if [ -n "$OSX_SDK" ]; then cp -rf Fortcoin-Qt.app $HOME/bin; fi
-    - if [ -f "Fortcoin-1.12.0-win64-setup.exe" ]; then cp Fortcoin-1.0.0-win64-setup.exe $HOME/bin; fi
-    - if [ -f "Fortcoin-1.12.0-win32-setup.exe" ]; then cp Fortcoin-1.0.0-win32-setup.exe $HOME/bin; fi
+    - if [ -f "Fortcoin-1.12.0-win64-setup.exe" ]; then cp Fortcoin-1.12.0-win64-setup.exe $HOME/bin; fi
+    - if [ -f "Fortcoin-1.12.0-win32-setup.exe" ]; then cp Fortcoin-1.12.0-win32-setup.exe $HOME/bin; fi
     - ls -la $HOME/bin
     - ls -la $HOME/bin/*
 after_script:
