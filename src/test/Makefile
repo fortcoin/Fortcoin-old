@@ -1,6 +1,6 @@
 all:
-	$(MAKE) -C .. dash_test
+	$(MAKE) -C .. Fortcoin_test
 clean:
-	$(MAKE) -C .. dash_test_clean
+	$(MAKE) -C .. Fortcoin_test_clean
 check:
-	$(MAKE) -C .. dash_test_check
+	$(MAKE) -C .. Fortcoin_test_check

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015 The Dash developers
+// Copyright (c) 2014-2015 The Fortcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -49,8 +49,8 @@ bool CMasternodeSync::IsBlockchainSynced()
     if(pindex == NULL) return false;
 
 
-    if(pindex->nTime + 60*60 < GetTime())
-        return false;
+    //if(pindex->nTime + 60*60 < GetTime())
+    //    return false;
 
     fBlockchainSynced = true;
 

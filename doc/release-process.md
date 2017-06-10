@@ -2,7 +2,7 @@ Release Process
 ====================
 
 * update translations (ping wumpus, Diapolo or tcatm on IRC)
-* see https://github.com/dashpay/dash/blob/master/doc/translation_process.md#syncing-with-transifex
+* see https://github.com/Fortcoinpay/Fortcoin/blob/master/doc/translation_process.md#syncing-with-transifex
 
 * * *
 
@@ -33,7 +33,7 @@ Release Process
 
 	export SIGNER=(your gitian key, ie bluematt, sipa, etc)
 	export VERSION=(new version, e.g. 0.8.0)
-	pushd ./dash
+	pushd ./Fortcoin
 	git checkout v${VERSION}
 	popd
 	pushd ./gitian-builder
@@ -54,29 +54,29 @@ Release Process
 
   By default, gitian will fetch source files as needed. For offline builds, they can be fetched ahead of time:
 
-	make -C ../dash/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../Fortcoin/depends download SOURCES_PATH=`pwd`/cache/common
 
   Only missing files will be fetched, so this is safe to re-run for each build.
 
-###Build Dash Core for Linux, Windows, and OS X:
+###Build Fortcoin Core for Linux, Windows, and OS X:
 
-	./bin/gbuild --commit dash=v${VERSION} ../dash/contrib/gitian-descriptors/gitian-linux.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../dash/contrib/gitian-descriptors/gitian-linux.yml
-	mv build/out/dash-*.tar.gz build/out/src/dash-*.tar.gz ../
-	./bin/gbuild --commit dash=v${VERSION} ../dash/contrib/gitian-descriptors/gitian-win.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-win --destination ../gitian.sigs/ ../dash/contrib/gitian-descriptors/gitian-win.yml
-	mv build/out/dash-*.zip build/out/dash-*.exe ../
-	./bin/gbuild --commit bitcoin=v${VERSION} ../dash/contrib/gitian-descriptors/gitian-osx.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../dash/contrib/gitian-descriptors/gitian-osx.yml
-	mv build/out/dash-*-unsigned.tar.gz inputs/dash-osx-unsigned.tar.gz
-	mv build/out/dash-*.tar.gz build/out/dash-*.dmg ../
+	./bin/gbuild --commit Fortcoin=v${VERSION} ../Fortcoin/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../Fortcoin/contrib/gitian-descriptors/gitian-linux.yml
+	mv build/out/Fortcoin-*.tar.gz build/out/src/Fortcoin-*.tar.gz ../
+	./bin/gbuild --commit Fortcoin=v${VERSION} ../Fortcoin/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-win --destination ../gitian.sigs/ ../Fortcoin/contrib/gitian-descriptors/gitian-win.yml
+	mv build/out/Fortcoin-*.zip build/out/Fortcoin-*.exe ../
+	./bin/gbuild --commit bitcoin=v${VERSION} ../Fortcoin/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../Fortcoin/contrib/gitian-descriptors/gitian-osx.yml
+	mv build/out/Fortcoin-*-unsigned.tar.gz inputs/Fortcoin-osx-unsigned.tar.gz
+	mv build/out/Fortcoin-*.tar.gz build/out/Fortcoin-*.dmg ../
 	popd
   Build output expected:
 
-  1. source tarball (dash-${VERSION}.tar.gz)
-  2. linux 32-bit and 64-bit binaries dist tarballs (dash-${VERSION}-linux[32|64].tar.gz)
-  3. windows 32-bit and 64-bit installers and dist zips (dash-${VERSION}-win[32|64]-setup.exe, dash-${VERSION}-win[32|64].zip)
-  4. OSX unsigned installer (dash-${VERSION}-osx-unsigned.dmg)
+  1. source tarball (Fortcoin-${VERSION}.tar.gz)
+  2. linux 32-bit and 64-bit binaries dist tarballs (Fortcoin-${VERSION}-linux[32|64].tar.gz)
+  3. windows 32-bit and 64-bit installers and dist zips (Fortcoin-${VERSION}-win[32|64]-setup.exe, Fortcoin-${VERSION}-win[32|64].zip)
+  4. OSX unsigned installer (Fortcoin-${VERSION}-osx-unsigned.dmg)
   5. Gitian signatures (in gitian.sigs/${VERSION}-<linux|win|osx-unsigned>/(your gitian key)/
 
 ###Next steps:
@@ -100,9 +100,9 @@ Commit your signature to gitian.sigs:
 	pushd ./gitian-builder
 	# Fetch the signature as instructed by Evan
 	cp signature.tar.gz inputs/
-	./bin/gbuild -i ../dash/contrib/gitian-descriptors/gitian-osx-signer.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../dash/contrib/gitian-descriptors/gitian-osx-signer.yml
-	mv build/out/dash-osx-signed.dmg ../dash-${VERSION}-osx.dmg
+	./bin/gbuild -i ../Fortcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../Fortcoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	mv build/out/Fortcoin-osx-signed.dmg ../Fortcoin-${VERSION}-osx.dmg
 	popd
 
 Commit your signature for the signed OSX binary:
@@ -134,9 +134,9 @@ rm SHA256SUMS
 - Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the bitcoin.org server
   into `/var/www/bin/bitcoin-core-${VERSION}`
 
-- Update dashpay.io version ***TODO***
+- Update Fortcoinpay.io version ***TODO***
 
-  - First, check to see if the dashpay.io maintainers have prepared a
+  - First, check to see if the Fortcoinpay.io maintainers have prepared a
     release: https://github.com/bitcoin/bitcoin.org/labels/Releases
 
       - If they have, it will have previously failed their Travis CI
@@ -151,15 +151,15 @@ rm SHA256SUMS
 
 - Announce the release:
 
-  - Release sticky on dashtalk: https://dashtalk.org/index.php?board=1.0 ***TODO***
+  - Release sticky on Fortcointalk: https://Fortcointalk.org/index.php?board=1.0 ***TODO***
 
-  - Dash-development mailing list
+  - Fortcoin-development mailing list
 
-  - Update title of #dashpay on Freenode IRC
+  - Update title of #Fortcoinpay on Freenode IRC
 
-  - Optionally reddit /r/Dashpay, ... but this will usually sort out itself
+  - Optionally reddit /r/Fortcoinpay, ... but this will usually sort out itself
 
-- Notify Flare (?) ***TODO*** so that he can start building [https://launchpad.net/~dashpay/+archive/ubuntu/dash](the PPAs) ***TODO***
+- Notify Flare (?) ***TODO*** so that he can start building [https://launchpad.net/~Fortcoinpay/+archive/ubuntu/Fortcoin](the PPAs) ***TODO***
 
 - Add release notes for the new version to the directory `doc/release-notes` in git master
 

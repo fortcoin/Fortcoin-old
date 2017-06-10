@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015 The Dash developers
+// Copyright (c) 2014-2015 The Fortcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -385,7 +385,7 @@ void CMasternodeMan::DsegUpdate(CNode* pnode)
             {
                 if (GetTime() < (*it).second) {
                     LogPrintf("dseg - we already asked %s for the list; skipping...\n", pnode->addr.ToString());
-                    return;
+		    return;
                 }
             }
         }

@@ -1,0 +1,27 @@
+# /etc/conf.d/Fortcoind: config file for /etc/init.d/Fortcoind
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/Fortcoin/Fortcoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/Fortcoind"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/Fortcoind.pid"
+
+# Where to write Fortcoind data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/Fortcoind"
+
+# User and group to own Fortcoind process
+#BITCOIND_USER="Fortcoin"
+#BITCOIND_GROUP="Fortcoin"
+
+# Path to Fortcoind executable
+#BITCOIND_BIN="/usr/bin/Fortcoind"
+
+# Nice value to run Fortcoind under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS="-disablewallet"
+

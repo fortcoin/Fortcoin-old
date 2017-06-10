@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015 The Dash developers
+// Copyright (c) 2014-2015 The Fortcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,10 +35,10 @@ map<uint256, CDarksendBroadcastTx> mapDarksendBroadcastTxes;
 // Keep track of the active Masternode
 CActiveMasternode activeMasternode;
 
-/* *** BEGIN DARKSEND MAGIC - DASH **********
-    Copyright (c) 2014-2015, Dash Developers
-        eduffield - evan@dashpay.io
-        udjinm6   - udjinm6@dashpay.io
+/* *** BEGIN DARKSEND MAGIC - FORT **********
+    Copyright (c) 2014-2015, Fortcoin Developers
+        eduffield - evan@Fortcoinpay.io
+        udjinm6   - udjinm6@Fortcoinpay.io
 */
 
 void CDarksendPool::ProcessMessageDarksend(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
@@ -766,9 +766,9 @@ void CDarksendPool::ChargeRandomFees(){
 
                 Being that Darksend has "no fees" we need to have some kind of cost associated
                 with using it to stop abuse. Otherwise it could serve as an attack vector and
-                allow endless transaction that would bloat Dash and make it unusable. To
+                allow endless transaction that would bloat Fortcoin and make it unusable. To
                 stop these kinds of attacks 1 in 10 successful transactions are charged. This
-                adds up to a cost of 0.001DRK per transaction on average.
+                adds up to a cost of 0.001FORT per transaction on average.
             */
             if(r <= 10)
             {
@@ -1410,7 +1410,7 @@ bool CDarksendPool::DoAutomaticDenominating(bool fDryRun)
         // should have some additional amount for them
         nLowestDenom += DARKSEND_COLLATERAL*4;
 
-    CAmount nBalanceNeedsAnonymized = nAnonymizeDarkcoinAmount*COIN - pwalletMain->GetAnonymizedBalance();
+    CAmount nBalanceNeedsAnonymized = nAnonymizeFortcoinAmount*COIN - pwalletMain->GetAnonymizedBalance();
 
     // if balanceNeedsAnonymized is more than pool max, take the pool max
     if(nBalanceNeedsAnonymized > DARKSEND_POOL_MAX) nBalanceNeedsAnonymized = DARKSEND_POOL_MAX;
@@ -1898,10 +1898,10 @@ bool CDarksendPool::IsCompatibleWithSession(int64_t nDenom, CTransaction txColla
 void CDarksendPool::GetDenominationsToString(int nDenom, std::string& strDenom){
     // Function returns as follows:
     //
-    // bit 0 - 100DRK+1 ( bit on if present )
-    // bit 1 - 10DRK+1
-    // bit 2 - 1DRK+1
-    // bit 3 - .1DRK+1
+    // bit 0 - 100FORT+1 ( bit on if present )
+    // bit 1 - 10FORT+1
+    // bit 2 - 1FORT+1
+    // bit 3 - .1FORT+1
     // bit 3 - non-denom
 
 
@@ -1969,10 +1969,10 @@ int CDarksendPool::GetDenominations(const std::vector<CTxOut>& vout, bool fSingl
 
     // Function returns as follows:
     //
-    // bit 0 - 100DRK+1 ( bit on if present )
-    // bit 1 - 10DRK+1
-    // bit 2 - 1DRK+1
-    // bit 3 - .1DRK+1
+    // bit 0 - 100FORT+1 ( bit on if present )
+    // bit 1 - 10FORT+1
+    // bit 2 - 1FORT+1
+    // bit 3 - .1FORT+1
 
     return denom;
 }
@@ -2060,7 +2060,7 @@ bool CDarkSendSigner::IsVinAssociatedWithPubkey(CTxIn& vin, CPubKey& pubkey){
     uint256 hash;
     if(GetTransaction(vin.prevout.hash, txVin, hash, true)){
         BOOST_FOREACH(CTxOut out, txVin.vout){
-            if(out.nValue == 1000*COIN){
+            if(out.nValue == 10000*COIN){
                 if(out.scriptPubKey == payee2) return true;
             }
         }
@@ -2230,7 +2230,7 @@ void ThreadCheckDarkSendPool()
     if(fLiteMode) return; //disable all Darksend/Masternode related functionality
 
     // Make this thread recognisable as the wallet flushing thread
-    RenameThread("dash-darksend");
+    RenameThread("Fortcoin-darksend");
 
     unsigned int c = 0;
 
@@ -2248,7 +2248,7 @@ void ThreadCheckDarkSendPool()
 
             // check if we should activate or ping every few minutes,
             // start right after sync is considered to be done
-            if(c % MASTERNODE_PING_SECONDS == 1) activeMasternode.ManageStatus();
+            if(c % MASTERNODE_PING_SECONDS == 15) activeMasternode.ManageStatus();
 
             if(c % 60 == 0)
             {

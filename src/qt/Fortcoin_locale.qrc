@@ -1,0 +1,20 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/Fortcoin_bg.qm</file>
+        <file alias="de">locale/Fortcoin_de.qm</file>
+        <file alias="en">locale/Fortcoin_en.qm</file>
+        <file alias="es">locale/Fortcoin_es.qm</file>
+        <file alias="fi">locale/Fortcoin_fi.qm</file>
+        <file alias="fr">locale/Fortcoin_fr.qm</file>
+        <file alias="it">locale/Fortcoin_it.qm</file>
+        <file alias="ja">locale/Fortcoin_ja.qm</file>
+        <file alias="pl">locale/Fortcoin_pl.qm</file>
+        <file alias="pt">locale/Fortcoin_pt.qm</file>
+        <file alias="ru">locale/Fortcoin_ru.qm</file>
+        <file alias="sk">locale/Fortcoin_sk.qm</file>
+        <file alias="sv">locale/Fortcoin_sv.qm</file>
+        <file alias="vi">locale/Fortcoin_vi.qm</file>
+        <file alias="zh_CN">locale/Fortcoin_zh_CN.qm</file>
+        <file alias="zh_TW">locale/Fortcoin_zh_TW.qm</file>
+    </qresource>
+</RCC>

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015 The Dash developers
+// Copyright (c) 2014-2015 The Fortcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -23,8 +23,8 @@ std::vector<CBudgetProposalBroadcast> vecImmatureBudgetProposals;
 std::vector<CFinalizedBudgetBroadcast> vecImmatureFinalizedBudgets;
 
 int GetBudgetPaymentCycleBlocks(){
-    // Amount of blocks in a months period of time (using 2.6 minutes per) = (60*24*30)/2.6
-    if(Params().NetworkID() == CBaseChainParams::MAIN) return 16616;
+    // Amount of blocks in a months period of time (using 1 minute per) = (60*24*30)/2.6
+    if(Params().NetworkID() == CBaseChainParams::MAIN) return 43198; // Approx once per 30 days
     //for testing purposes
 
     return 50; //ten times per day
@@ -788,14 +788,7 @@ CAmount CBudgetManager::GetTotalBudget(int nHeight)
     if(chainActive.Tip() == NULL) return 0;
 
     //get min block value and calculate from that
-    CAmount nSubsidy = 5 * COIN;
-
-    if(Params().NetworkID() == CBaseChainParams::TESTNET){
-        for(int i = 46200; i <= nHeight; i += 210240) nSubsidy -= nSubsidy/14;
-    } else {
-        // yearly decline of production by 7.1% per year, projected 21.3M coins max by year 2050.
-        for(int i = 210240; i <= nHeight; i += 210240) nSubsidy -= nSubsidy/14;
-    }
+    CAmount nSubsidy = 1 * COIN;
 
     // Amount of blocks in a months period of time (using 2.6 minutes per) = (60*24*30)/2.6
     if(Params().NetworkID() == CBaseChainParams::MAIN) return ((nSubsidy/100)*10)*576*30;

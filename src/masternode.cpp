@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015 The Dash developers
+// Copyright (c) 2014-2015 The Fortcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -383,7 +383,7 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     std::string strMessage;
     std::string errorMessage = "";
 
-    if(protocolVersion < 70201) {
+    if(protocolVersion < 99999999) {
         std::string vchPubKey(pubkey.begin(), pubkey.end());
         std::string vchPubKey2(pubkey2.begin(), pubkey2.end());
         strMessage = addr.ToString(false) + boost::lexical_cast<std::string>(sigTime) +
@@ -433,8 +433,8 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     }
 
     if(Params().NetworkID() == CBaseChainParams::MAIN) {
-        if(addr.GetPort() != 9999) return false;
-    } else if(addr.GetPort() == 9999) return false;
+        if(addr.GetPort() != 49999) return false;
+    } else if(addr.GetPort() == 49999) return false;
 
     //search existing Masternode list, this is where we update existing Masternodes with new mnb broadcasts
     CMasternode* pmn = mnodeman.Find(vin);
@@ -482,7 +482,6 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
 
     // search existing Masternode list
     CMasternode* pmn = mnodeman.Find(vin);
-
     if(pmn != NULL) {
         // nothing to do here if we already know about this masternode and it's enabled
         if(pmn->IsEnabled()) return true;
@@ -523,14 +522,14 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     }
 
     // verify that sig time is legit in past
-    // should be at least not earlier than block when 1000 DASH tx got MASTERNODE_MIN_CONFIRMATIONS
+    // should be at least not earlier than block when 1000 FORT tx got MASTERNODE_MIN_CONFIRMATIONS
     uint256 hashBlock = 0;
     CTransaction tx2;
     GetTransaction(vin.prevout.hash, tx2, hashBlock, true);
     BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
     if (mi != mapBlockIndex.end() && (*mi).second)
     {
-        CBlockIndex* pMNIndex = (*mi).second; // block for 1000 DASH tx -> 1 confirmation
+        CBlockIndex* pMNIndex = (*mi).second; // block for 1000 FORT tx -> 1 confirmation
         CBlockIndex* pConfIndex = chainActive[pMNIndex->nHeight + MASTERNODE_MIN_CONFIRMATIONS - 1]; // block where tx got MASTERNODE_MIN_CONFIRMATIONS
         if(pConfIndex->GetBlockTime() > sigTime)
         {
@@ -721,6 +720,7 @@ bool CMasternodePing::CheckAndUpdate(int& nDos, bool fRequireEnabled, bool fChec
 
             Relay();
             return true;
+
         }
         LogPrint("masternode", "CMasternodePing::CheckAndUpdate - Masternode ping arrived too early, vin: %s\n", vin.ToString());
         //nDos = 1; //disable, this is happening frequently and causing banned peers

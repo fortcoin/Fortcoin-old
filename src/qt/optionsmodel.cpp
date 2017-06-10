@@ -1,10 +1,10 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
-// Copyright (c) 2014-2015 The Dash developers
+// Copyright (c) 2014-2015 The Fortcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/dash-config.h"
+#include "config/Fortcoin-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -60,7 +60,7 @@ void OptionsModel::Init()
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", BitcoinUnits::DASH);
+        settings.setValue("nDisplayUnit", BitcoinUnits::FORT);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -74,11 +74,11 @@ void OptionsModel::Init()
     if (!settings.contains("nDarksendRounds"))
         settings.setValue("nDarksendRounds", 2);
 
-    if (!settings.contains("nAnonymizeDarkcoinAmount"))
-        settings.setValue("nAnonymizeDarkcoinAmount", 1000);
+    if (!settings.contains("nAnonymizeFortcoinAmount"))
+        settings.setValue("nAnonymizeFortcoinAmount", 1000);
 
     nDarksendRounds = settings.value("nDarksendRounds").toLongLong();
-    nAnonymizeDarkcoinAmount = settings.value("nAnonymizeDarkcoinAmount").toLongLong();
+    nAnonymizeFortcoinAmount = settings.value("nAnonymizeFortcoinAmount").toLongLong();
 
     // These are shared with the core or have a command-line parameter
     // and we want command-line parameters to overwrite the GUI settings.
@@ -140,8 +140,8 @@ void OptionsModel::Init()
 
     if (settings.contains("nDarksendRounds"))
         SoftSetArg("-darksendrounds", settings.value("nDarksendRounds").toString().toStdString());
-    if (settings.contains("nAnonymizeDarkcoinAmount"))
-        SoftSetArg("-anonymizedashamount", settings.value("nAnonymizeDarkcoinAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeFortcoinAmount"))
+        SoftSetArg("-anonymizeFortcoinamount", settings.value("nAnonymizeFortcoinAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -152,7 +152,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in dash.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in Fortcoin.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -221,8 +221,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return settings.value("nThreadsScriptVerif");
         case DarksendRounds:
             return QVariant(nDarksendRounds);
-        case AnonymizeDarkcoinAmount:
-            return QVariant(nAnonymizeDarkcoinAmount);
+        case AnonymizeFortcoinAmount:
+            return QVariant(nAnonymizeFortcoinAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -329,10 +329,10 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             settings.setValue("nDarksendRounds", nDarksendRounds);
             emit darksendRoundsChanged(nDarksendRounds);
             break;
-        case AnonymizeDarkcoinAmount:
-            nAnonymizeDarkcoinAmount = value.toInt();
-            settings.setValue("nAnonymizeDarkcoinAmount", nAnonymizeDarkcoinAmount);
-            emit anonymizeDarkcoinAmountChanged(nAnonymizeDarkcoinAmount);
+        case AnonymizeFortcoinAmount:
+            nAnonymizeFortcoinAmount = value.toInt();
+            settings.setValue("nAnonymizeFortcoinAmount", nAnonymizeFortcoinAmount);
+            emit anonymizeFortcoinAmountChanged(nAnonymizeFortcoinAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

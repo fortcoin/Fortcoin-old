@@ -93,7 +93,7 @@ public:
 };
 
 /**
- * Dash RPC command dispatcher.
+ * Fortcoin RPC command dispatcher.
  */
 class CRPCTable
 {
