@@ -56,6 +56,8 @@ script:
 after_script:
 - echo $TRAVIS_COMMIT_RANGE
 - echo $TRAVIS_COMMIT_LOG
+notifications:
+  irc: chat.freenode.net#multicoin-co
 before_deploy: cd $HOME && tar -zcvf Fortcoin-$HOST.tar.gz $HOME/bin && ls -la $HOME
 deploy:
   skip_cleanup: true
@@ -65,6 +67,6 @@ deploy:
     all_branches: true
 notifications:
   api_key:
-    secure: "GdW5hhECPuBY8aOpPdriWdQp0jodWzbwLzlsKQFjoVW4JcqLiwpkXMPucJaTIT2vEMr//hkPkfhOGeEf2Kd+07nnnxGunDRw4YaXXCo1+a3WArcCjOmw+QvDIlH/wFGjoOPp8gbAsIzvMfGs8zYejop5A4FjcLYUjbqKETV4zjnTbzJMiThTKHgd+R42AW+jfJ631S2UTmrlTQTq73fUGVcjgozTW1C6XAjcMDbM7Mk4px9jIQI7avAkUoMzj6X/smlh26t8Mwfe0PzlEtKliOq6pCNaKcAFMOMuD/g1eE/DW4E+Gi1QYIRa59v2iLSz50ccDT92qzuZKMfC8c2l3c/8C+hKGYmjiw2K6IUkKDqVOneaykMZt4qc/eEpy6H2YD3PIsW1Swp3gIZ0xKe5LWOHJgxnLvra/sDX0KZ/mHZEqdWnCW6pAXcdNrj5v7Z9gTw4aYWxAmh3XLdRDo1Zo/YHZteEEKtBBfhCQL/n9s7HcmxFzEpiOnZoFjmjG12M2lJzI/vtBUDTxL+b4DEpHvcaW9DmfDf6yEchnHl+YT25ZovZaRbLwrfOFdYXqMUABrxDrDX8YZMWr4UDOcbh2iaVniQB3WsIjCEsm2ZoeMPR6St4JJ1btsfUhji9taqkJdQVCJCtiZp1lKp4P4EHH/uidCs4H0ymD33j931j+p0="
+    secure: Equekby5N1j+U0VcuoL8QTX3S95NOFP/J4bgWIKVZrz6QqpeCb84B+7QoGlL+nUtA6cY01U+p4x2MlFRBQNhpzhWld/hW35cKek/sN28pf0a6IJqS3W4CNo7yVqQERtFIZJdEmEEMMVYWoVz76YZaVTE8/Ies0m9NhrZN5xD6O51ia7ZdeCT57BZPfmY2pXuKDrpbJkHA61QxDpBSd/98oVxCqOUX3y0XtDdnL8pt8URyJXmVTasKh1hQacEL1hBkR5+RLq4vgNMfRX6iynDPbebv7yNJywOJYQ4k1nnk5VXYKPw/ioIH2qVdOUlIX4+66IzHYJFXSazz4/k2fIk7TlG4NhYErfKklakUIGPtGfwNWA1viIo7tr1FiO99+7DicHAK5ioNBWJVeiYEu23DqQ+3m3Fk8Wrm8LmYdNla+OA7lEP17taQmcGw9H0w/W05AtaOtBbu00FzG1Mao4SguK1qYQMBcymkwXm82GeZjWT8nDc8bQa+xGMEnzyvkowMnP4WKR7Y+GnGe/bcCHMDGAYomBIqI6k5r+hddbodMYDjOY8GRHv7yAkGSoeKy7XM4Rs0TeHWcw1mgqZwc+1MU+vIhhDr59ntdxWmk633au7biokUIxazdwAjVU3Z+kiSoU8uUFTUXHfmy3Ezd2AnJ3zqo1QpNzemhb04c6+Sis=
   file:
     - $HOME/Fortcoin-$HOST.tar.gz
