@@ -56,8 +56,6 @@ script:
 after_script:
 - echo $TRAVIS_COMMIT_RANGE
 - echo $TRAVIS_COMMIT_LOG
-notifications:
-  irc: chat.freenode.net#multicoin-co
 before_deploy: cd $HOME && tar -zcvf Fortcoin-$HOST.tar.gz $HOME/bin && ls -la $HOME
 deploy:
   skip_cleanup: true
