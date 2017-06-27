@@ -103,7 +103,7 @@ public:
         pchMessageStart[2] = 0xc8;
         pchMessageStart[3] = 0xb1;
         vAlertPubKey = ParseHex("04201ba1cad0cf49ed56dbd95ec22e5ff392a756a0e6e69d9f455cb9ebabbd96cc287ad65df52bdd84e25cac8ea6b08770c7e332dfc2a218f111ac884b0d6449be");
-        nDefaultPort = 49999;
+        nDefaultPort = 47899;
         bnProofOfWorkLimit = ~uint256(0) >> 20;  // Fortcoin starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nEnforceBlockUpgradeMajority = 750;
