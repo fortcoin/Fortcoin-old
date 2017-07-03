@@ -49,8 +49,8 @@ script:
     - ls -la 
     - if [ -d $OUTDIR ]; then ls -la $OUTDIR && cp $OUTDIR/* $HOME/bin/ -rf; fi
     - if [ -n "$OSX_SDK" ]; then cp -rf Fortcoin-Qt.app $HOME/bin; fi
-    - if [ -f "Fortcoin-1.12.0-win64-setup.exe" ]; then cp Fortcoin-1.12.0-win64-setup.exe $HOME/bin; fi
-    - if [ -f "Fortcoin-1.12.0-win32-setup.exe" ]; then cp Fortcoin-1.12.0-win32-setup.exe $HOME/bin; fi
+    - if [ -f "Fortcoin-1.12.0-win64-setup.exe" ]; then cp Fortcoin-1.12.2-win64-setup.exe $HOME/bin; fi
+    - if [ -f "Fortcoin-1.12.0-win32-setup.exe" ]; then cp Fortcoin-1.12.2-win32-setup.exe $HOME/bin; fi
     - ls -la $HOME/bin
     - ls -la $HOME/bin/*
 after_script:
