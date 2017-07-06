@@ -1544,7 +1544,7 @@ int64_t GetBlockValue(int nBits, int nHeight, const CAmount& nFees)
     int64_t nSubsidy = 8 * COIN;
 
     if (nHeight == 1) {
-      nSubsidy = 4260050 * COIN;
+      nSubsidy = 21000000 * COIN;
     }
     
     return nSubsidy + nFees;
