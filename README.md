@@ -1,3 +1,5 @@
+Fort Coin - https://www.fortcoin.com - Fortcoin (FORT) on Cryptopia - https://www.cryptopia.co.nz/Exchange/?market=FORT_BTC#
+
 FORT COIN IS DIGITAL CASH
 A revolutionary digital money system.
 Meet Digital Cash.
@@ -15,5 +17,5 @@ Use the autogen script to prepare the build environment.
     
 Please view https://github.com/dashpay/dash/blob/master/doc/build-unix.md for more information on building on UNIX.
 
-Fort Coin - https://www.fortcoin.com - Fortcoin (FORT) on Cryptopia - https://www.cryptopia.co.nz/Exchange/?market=FORT_BTC#
+
 
